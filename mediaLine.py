@@ -253,5 +253,5 @@ black = find_wrong(trans_train,y,'merchant')
 rule_code_1 = black.sort_values(by=['Tag_x','Tag_y'],ascending=False).iloc[:50].merchant.tolist()
 test_rule_uid = pd.DataFrame(Test_trans[Test_trans['merchant'].isin(rule_code_1)].UID.unique())
 pred_data_rule = Test_tag.merge(test_rule_uid,left_on ='UID',right_on =0, how ='left')
-pred_data_rule['Tag'][(pred_data_rule[0]>0)] += 0.4
+pred_data_rule['Tag'][(pred_data_rule[0]>0)] = 1
 pred_data_rule[['UID', 'Tag']].to_csv('sub/sub+rule.csv', index=False)
